@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import SearchBar from './SearchBar'
-import logo from './logo.svg'
-import './App.css'
+import React, { Component } from "react";
+import SearchBar from "./SearchBar";
+import "./App.css";
 
 class App extends Component {
   constructor() {
     super();
   }
 
-  state = {  }
+  state = {};
 
-  render() { 
+  render() {
     return (
       <div className="App">
         <SearchBar />
