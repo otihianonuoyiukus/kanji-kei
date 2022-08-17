@@ -18,7 +18,7 @@ class SearchFilter extends Component {
     return (
       <div className="dropdown">
         <button
-          className="btn btn-secondary btn-lg dropdown-toggle"
+          className="btn btn-secondary btn-lg h-100 dropdown-toggle"
           type="button"
           data-bs-toggle="dropdown"
           aria-haspopup="true"

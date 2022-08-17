@@ -8,15 +8,20 @@ class SearchBar extends Component {
   }
 
   handleFilterChange(filterType) {
-    console.log(filterType);
+    this.setState({ filterValue: filterType });
   }
 
   render() {
     return (
-      <div className="lead">
-        <form autoComplete="off">
-          <div className="input-group w-50 mx-auto">
-            <SearchFilter onFilterChange={this.handleFilterChange} />
+      <div className="h-100">
+        <form className="h-100" autoComplete="off">
+          <div className="input-group mx-auto">
+            <SearchFilter onFilterChange={this.handleFilterChange.bind(this)} />
+            <div className="filter-badge-wrapper">
+              <span className="filter-badge text-center">
+                <strong>{this.state.filterValue}</strong>
+              </span>
+            </div>
             <input
               id="searchBar"
               type="text"
