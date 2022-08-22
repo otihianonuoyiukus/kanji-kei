@@ -174,13 +174,39 @@ main p {
 
 
 
-.autocomplete {
+.autocomplete-list {
   /*the container must be positioned relative:*/
   position: relative;
   display: inline-block;
   border-radius: 5px;
+  width: 100%;
+  max-height: 50vh;
+  margin-top: 2px;
+  overflow-y: auto;
+  background-color: #bc002cbd;
+  border: 1px solid #FCD116;
+  border-radius: .5rem !important;
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
 }
-.autocomplete-items {
+.autocomplete-item {
+  width: 100%;
+  padding: 10px;
+  float: left;
+  cursor: pointer;
+  color: #FCD116 !important;
+  user-select: none;
+}
+.autocomplete-item:hover {
+  /*when hovering an item:*/
+  background-color: #fcd21683;
+}
+.autocomplete-item:active {
+  /*when hovering an item:*/
+  color: #BC002D !important;
+  background-color: #fcd216bd !important;
+}
+/* .autocomplete-items {
   position: absolute;
   overflow-y: auto;
   max-height: 50vh;
@@ -190,62 +216,45 @@ main p {
   border-radius: .5rem !important;
   border-top-right-radius: 0 !important;
   border-top-left-radius: 0 !important;
-  /*position the autocomplete items to be the same width as the container:*/
   top: 100%;
   left: 0;
   right: 0;
-}
+} */
 /* total width */
-.autocomplete-items::-webkit-scrollbar {
+.autocomplete-list::-webkit-scrollbar {
   background-color: transparent;
   width: 10px;
 }
 
 /* background of the scrollbar */
-.autocomplete-items::-webkit-scrollbar-track {
+.autocomplete-list::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
 /* scrollbar body */
-.autocomplete-items::-webkit-scrollbar-thumb {
+.autocomplete-list::-webkit-scrollbar-thumb {
   background-color: #bc002cbd;
   border-radius: .3rem;
   border: 1px solid #FCD116;
 }
 
 /* set button */
-.autocomplete-items::-webkit-scrollbar-button {
+.autocomplete-list::-webkit-scrollbar-button {
   display: none;
 }
-.autocomplete-items div {
-  float: left;
-  width: 100%;
-  padding: 10px;
-  cursor: pointer;
-  color: #FCD116 !important;
-}
-.autocomplete-items div:hover {
-  /*when hovering an item:*/
-  background-color: #fcd21683;
-}
-.autocomplete-items div:active {
-  /*when hovering an item:*/
-  color: #BC002D !important;
-  background-color: #fcd216bd !important;
-}
-.autocomplete-items div span {
+.autocomplete-list div span {
   float: left;
   margin: 0;
 }
 .autocomplete-item-kanji {
   height: 100px;
-  width: 30%;
+  width: 13%;
   line-height: 90px;
   font-size: 90px;
 }
 .autocomplete-item-reading {
   height: 50px;
-  width: 70%;
+  width: 87%;
   text-align: left;
   line-height: 50px;
   font-size: 100%;
@@ -280,8 +289,9 @@ main p {
   border-top-right-radius: 0;
 }
 
-.dropdown-menu p {
+.dropdown-menu .dropdown-item {
   color: #FCD116;
+  user-select: none;
 }
 
 
@@ -303,8 +313,12 @@ main p {
   border-radius: 10px;
   padding-left: 5px;
   padding-right: 5px;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  font-weight: normal;
+  text-transform: uppercase;
+
   line-height: 30px;
+  user-select: none;
 }
 
 
