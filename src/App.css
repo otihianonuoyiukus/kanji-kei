@@ -1,4 +1,11 @@
-/*
+@font-face {
+  font-family: 'JapaneseRadicals-Regular'; /*a name to be used later*/
+  src: url('./assets/fonts/JapaneseRadicals-Regular.otf'); /*URL to font*/
+}
+
+
+
+/*  
  * Globals
  */
 
@@ -178,7 +185,6 @@ main p {
   /*the container must be positioned relative:*/
   position: relative;
   display: inline-block;
-  border-radius: 5px;
   width: 100%;
   max-height: 50vh;
   margin-top: 2px;
@@ -198,28 +204,13 @@ main p {
   user-select: none;
 }
 .autocomplete-item:hover {
-  /*when hovering an item:*/
   background-color: #fcd21683;
 }
 .autocomplete-item:active {
-  /*when hovering an item:*/
   color: #BC002D !important;
   background-color: #fcd216bd !important;
 }
-/* .autocomplete-items {
-  position: absolute;
-  overflow-y: auto;
-  max-height: 50vh;
-  margin-top: 2px;
-  background-color: #bc002cbd;
-  border: 1px solid #FCD116;
-  border-radius: .5rem !important;
-  border-top-right-radius: 0 !important;
-  border-top-left-radius: 0 !important;
-  top: 100%;
-  left: 0;
-  right: 0;
-} */
+
 /* total width */
 .autocomplete-list::-webkit-scrollbar {
   background-color: transparent;
@@ -316,10 +307,75 @@ main p {
   font-size: 0.9rem;
   font-weight: normal;
   text-transform: uppercase;
-
   line-height: 30px;
   user-select: none;
 }
+
+
+/* 
+* Radical Table
+*/
+.radical-table {
+  padding: 0;
+  background: -webkit-repeating-linear-gradient(top, #BC002D, #BC002D 32px, #a10026 32px, #af0029 64px);
+  background: repeating-linear-gradient(180deg, #BC002D, #BC002D 32px, #a10026 32px, #af0029 64px);
+  background-repeat: repeat-y;
+  background-color: #BC002D;
+  outline: 1px solid #FCD116;
+  border-radius: .5rem !important;
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  list-style: none;
+  text-align: center;
+  margin: 0;
+  margin-top: 2px;
+}
+
+/* TODO: Fix this mess of a CSS */
+
+.radical-table .radical-square {
+  width: 32px;
+  height: 32px;
+  float: left;
+  border: 5px solid transparent;
+  user-select: none;
+  font-family: JapaneseRadicals-Regular;
+  font-size: 22px;
+  line-height: 18px;
+  cursor: pointer;
+}
+
+
+.radical-table .radical-square:hover {
+  background-color: #fcd21683;
+}
+
+.radical-table .radical-square:active {
+  color: #BC002D !important;
+  background-color: #fcd216bd !important;
+}
+
+.radical-table .radical-square.selected {
+  border: 5px solid rgba(0,0,0,0.4);
+  background-color: rgba(255, 255, 0, 0.329);
+  border-radius: 50%;
+}
+
+.radical-table .radical-square.activated {
+  color: #FCD116;
+}
+
+.radical-table .radical-square.deactivated {
+  color: #bb9c14;
+}
+
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
 
 
 /*

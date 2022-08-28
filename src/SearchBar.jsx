@@ -2,16 +2,29 @@ import React, { Component } from "react";
 import Papa from "papaparse";
 import SearchFilter from "./SearchFilter";
 import AutoCompleteList from "./AutoCompleteList";
+import RadicalTable from "./RadicalTable";
 
-let result;
-const csvURL =
+let resultKanji;
+const csvURLKanji =
   "https://raw.githubusercontent.com/kanjialive/kanji-data-media/master/language-data/ka_data.csv";
-Papa.parse(csvURL, {
+Papa.parse(csvURLKanji, {
   download: true,
   worker: true,
   header: true,
   complete: function (data) {
-    result = data.data;
+    resultKanji = data.data;
+  },
+});
+
+let resultRadical;
+const csvURLRadical =
+  "https://raw.githubusercontent.com/kanjialive/kanji-data-media/master/language-data/japanese-radicals.csv";
+Papa.parse(csvURLRadical, {
+  download: true,
+  worker: true,
+  header: true,
+  complete: function (data) {
+    resultRadical = data.data;
   },
 });
 
@@ -21,12 +34,17 @@ class SearchBar extends Component {
     this.state = {
       filterValue: "meaning",
       searchValue: "",
-      kanjiList: {},
+      kanjiList: [],
+      selectedRadicalId: "",
     };
   }
 
   handleFilterChange(filterType) {
-    this.setState({ filterValue: filterType, searchValue: "" });
+    this.setState({
+      filterValue: filterType,
+      searchValue: "",
+      selectedRadicalId: "",
+    });
   }
 
   handleSearchChange(event) {
@@ -38,7 +56,7 @@ class SearchBar extends Component {
     if (searchValue.length > 0) {
       switch (this.state.filterValue) {
         case "meaning":
-          searchResult = result.filter((kanji) =>
+          searchResult = resultKanji.filter((kanji) =>
             kanji.kmeaning.includes(searchValue)
           );
 
@@ -68,46 +86,15 @@ class SearchBar extends Component {
               searchResult.splice(i, 1);
             }
           }
-
-          // searchResult.forEach((kanji, index) => {
-          //   const kanjiMeaning = kanji.kmeaning.split(", ");
-          //   let isClosest = false,
-          //     isClose = false;
-          //   // console.log(`Kanji: ${kanji.kanji}
-          //   // Kanji meaning: ${kanji.kmeaning}
-          //   // isClose: ${isClose}`);
-          //   kanjiMeaning.forEach((meaning) => {
-          //     if (
-          //       meaning.substring(0, searchValue.length).toLowerCase() ==
-          //       searchValue.toLowerCase()
-          //     ) {
-          //       isClose = true;
-          //       if (meaning.length == searchValue.length) {
-          //         isClosest = true;
-          //       }
-          //     }
-          //   });
-          //   //FIXME: Find another way to splice elements out of the search results
-          //   if (isClosest == true) {
-          //     isClose = false;
-          //     closestMatch.unshift(kanji);
-          //     // searchResult.splice(index, 1);
-          //   } else if (isClose == true) {
-          //     closeMatch.unshift(kanji);
-          //     searchResult.splice(index, 1);
-          //   }
-          // });
-          console.log(closeMatch);
           closestMatch.forEach((kanji) => closeMatch.push(kanji));
           closeMatch.sort((a, b) => b.kmeaning.length - a.kmeaning.length);
-          // console.log(closeMatch);
           closeMatch.forEach((kanji) => searchResult.unshift(kanji));
           break;
         case "radical":
           //TODO: Work on this.
           break;
         default:
-          searchResult = result.filter((kanji) =>
+          searchResult = resultKanji.filter((kanji) =>
             kanji.kanji.includes(searchValue)
           );
       }
@@ -117,6 +104,13 @@ class SearchBar extends Component {
       searchValue: searchValue,
       kanjiList: searchResult,
     });
+  }
+
+  handleRadicalSelect(radicalId) {
+    let stateRadicalId = this.state.selectedRadicalId;
+    stateRadicalId == radicalId
+      ? this.setState({ selectedRadicalId: "" })
+      : this.setState({ selectedRadicalId: radicalId });
   }
 
   render() {
@@ -148,6 +142,13 @@ class SearchBar extends Component {
         </form>
         {this.state.searchValue.length > 0 && (
           <AutoCompleteList kanjiList={this.state.kanjiList} />
+        )}
+        {this.state.filterValue === "radical" && (
+          <RadicalTable
+            resultRadical={resultRadical}
+            selectedRadicalId={this.state.selectedRadicalId}
+            onRadicalSelect={this.handleRadicalSelect.bind(this)}
+          />
         )}
       </div>
     );
