@@ -317,6 +317,8 @@ main p {
 */
 .radical-table {
   padding: 0;
+  margin: 0;
+  margin-top: 2px;
   background: -webkit-repeating-linear-gradient(top, #BC002D, #BC002D 32px, #a10026 32px, #af0029 64px);
   background: repeating-linear-gradient(180deg, #BC002D, #BC002D 32px, #a10026 32px, #af0029 64px);
   background-repeat: repeat-y;
@@ -327,21 +329,34 @@ main p {
   border-top-left-radius: 0 !important;
   list-style: none;
   text-align: center;
-  margin: 0;
-  margin-top: 2px;
 }
 
 /* TODO: Fix this mess of a CSS */
 
-.radical-table .radical-square {
+.radical-table .square {
   width: 32px;
   height: 32px;
   float: left;
   border: 5px solid transparent;
   user-select: none;
-  font-family: JapaneseRadicals-Regular;
   font-size: 22px;
   line-height: 18px;
+}
+
+.radical-table .stroke-square {
+  width: 24px;
+  height: 24px;
+  margin: 4px;
+  color: #BC002D;
+  background-color: #FCD116;
+  font-family: monospace;
+  font-size: 14px;
+  border: 3px solid #FCD116;
+  border-radius: 4px;
+}
+
+.radical-table .radical-square {
+  font-family: JapaneseRadicals-Regular;
   cursor: pointer;
 }
 
