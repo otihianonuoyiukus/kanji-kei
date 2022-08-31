@@ -132,12 +132,6 @@ class SearchBar extends Component {
               value={this.state.searchValue}
               onChange={this.handleSearchChange.bind(this)}
             />
-            <input
-              id="searchBtn"
-              type="submit"
-              className="btn btn-primary btn-lg fw-bold"
-              value="Search"
-            />
           </div>
         </form>
         {this.state.searchValue.length > 0 && (

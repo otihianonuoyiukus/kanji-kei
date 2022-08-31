@@ -18,7 +18,7 @@ class AutoCompleteListItem extends Component {
       <div className="autocomplete-item">
         <span
           className="autocomplete-item-kanji"
-          onClick={() => console.log(this.props.meaningValue)}
+          onClick={() => console.log(this.props.meaningValue)} //TODO: Might want to remove this later.
         >
           {this.props.kanjiValue}
         </span>

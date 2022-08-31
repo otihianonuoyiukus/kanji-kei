@@ -170,15 +170,6 @@ main p {
   margin-top: 50px;
 }
 
-.input-group #searchBtn {
-  background-color: transparent;
-  border-color: #FCD116;
-  border-left: 0;
-  color: #FCD116;
-  border-top-right-radius: 0.5rem !important;
-  border-bottom-right-radius: 0.5rem !important;
-}
-
 
 
 .autocomplete-list {
