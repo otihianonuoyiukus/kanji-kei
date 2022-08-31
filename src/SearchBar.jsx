@@ -35,7 +35,8 @@ class SearchBar extends Component {
       filterValue: "meaning",
       searchValue: "",
       kanjiList: [],
-      selectedRadicalId: "",
+      selectedRadicalChar: "",
+      highlightedRadicalStrokeGrp: -1,
     };
   }
 
@@ -43,12 +44,13 @@ class SearchBar extends Component {
     this.setState({
       filterValue: filterType,
       searchValue: "",
-      selectedRadicalId: "",
+      selectedRadicalChar: "",
+      highlightedRadicalStrokeGrp: -1,
     });
   }
 
   handleSearchChange(event) {
-    const searchValue = event.target.value;
+    let searchValue = event.target.value;
     let searchResult,
       closeMatch = [],
       closestMatch = [];
@@ -91,7 +93,6 @@ class SearchBar extends Component {
           closeMatch.forEach((kanji) => searchResult.unshift(kanji));
           break;
         case "radical":
-          //TODO: Work on this.
           break;
         default:
           searchResult = resultKanji.filter((kanji) =>
@@ -106,14 +107,37 @@ class SearchBar extends Component {
     });
   }
 
-  handleRadicalSelect(radicalId) {
-    let stateRadicalId = this.state.selectedRadicalId;
-    stateRadicalId == radicalId
-      ? this.setState({ selectedRadicalId: "" })
-      : this.setState({ selectedRadicalId: radicalId });
+  handleRadicalSelect(radicalChar) {
+    const searchValue = radicalChar;
+    const stateRadicalChar = this.state.selectedRadicalChar;
+
+    if (stateRadicalChar == radicalChar) {
+      this.setState({
+        searchValue: "",
+        selectedRadicalChar: "",
+      });
+    } else {
+      this.setState({
+        searchValue: searchValue,
+        selectedRadicalChar: radicalChar,
+      });
+    }
+
+    const searchResult = resultKanji.filter((kanji) =>
+      kanji.radical.includes(searchValue.trim())
+    );
+
+    this.setState({
+      kanjiList: searchResult,
+    });
+  }
+
+  handleRadicalHighlight(strokeNum) {
+    this.setState({ highlightedRadicalStrokeGrp: strokeNum });
   }
 
   render() {
+    //TODO: Use the spread thing for the state properties
     return (
       <div className="h-100">
         <form className="h-100" autoComplete="off">
@@ -125,24 +149,26 @@ class SearchBar extends Component {
               </span>
             </div>
             <input
-              id="searchBar"
               type="text"
               className="form-control"
               placeholder="Search"
               value={this.state.searchValue}
               onChange={this.handleSearchChange.bind(this)}
+              disabled={this.state.filterValue == "radical"}
             />
           </div>
         </form>
-        {this.state.searchValue.length > 0 && (
-          <AutoCompleteList kanjiList={this.state.kanjiList} />
-        )}
         {this.state.filterValue === "radical" && (
           <RadicalTable
             resultRadical={resultRadical}
-            selectedRadicalId={this.state.selectedRadicalId}
+            selectedRadicalChar={this.state.selectedRadicalChar}
+            highlightedRadicalStrokeGrp={this.state.highlightedRadicalStrokeGrp}
             onRadicalSelect={this.handleRadicalSelect.bind(this)}
+            onRadicalHighlight={this.handleRadicalHighlight.bind(this)}
           />
+        )}
+        {this.state.searchValue.length > 0 && (
+          <AutoCompleteList kanjiList={this.state.kanjiList} />
         )}
       </div>
     );

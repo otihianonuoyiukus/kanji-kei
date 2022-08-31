@@ -131,7 +131,7 @@ main {
 
 
 
-.input-group #searchBar {
+.input-group .form-control {
   background-color: transparent;
   border-color: #FCD116;
   border-left: 0;
@@ -351,6 +351,9 @@ main p {
   cursor: pointer;
 }
 
+.radical-table .radical-square.highlighted {
+  background-color: #fcd21683;
+}
 
 .radical-table .radical-square:hover {
   background-color: #fcd21683;
