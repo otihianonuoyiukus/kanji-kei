@@ -3,43 +3,55 @@ import PropTypes from "prop-types";
 
 StrokeNumberSquare.propTypes = {
   strokeNum: PropTypes.number.isRequired,
+  onRadicalHighlight: PropTypes.func.isRequired,
 };
 
 function StrokeNumberSquare(props) {
   const strokeNum = props.strokeNum;
 
-  return <li className="square stroke-square">{strokeNum}</li>;
+  return (
+    <li
+      className="square stroke-square"
+      onMouseEnter={() => props.onRadicalHighlight(strokeNum)}
+      onMouseLeave={() => props.onRadicalHighlight(-1)}
+    >
+      {strokeNum}
+    </li>
+  );
 }
 
 RadicalSquare.propTypes = {
   radical: PropTypes.object.isRequired,
-  selectedRadical: PropTypes.string.isRequired,
+  selectedRadicalChar: PropTypes.string.isRequired,
   isSelected: PropTypes.bool.isRequired,
+  isHighlighted: PropTypes.bool.isRequired,
   onRadicalSelect: PropTypes.func.isRequired,
 };
 
 function RadicalSquare(props) {
-  const radical = props.radical;
-  const selectedRadical = props.selectedRadical;
+  const {
+    radical,
+    selectedRadicalChar,
+    isSelected,
+    isHighlighted,
+    onRadicalSelect,
+  } = props;
 
-  return props.isSelected ? (
+  let listClassName =
+    isSelected == true
+      ? "square radical-square activated selected"
+      : selectedRadicalChar == ""
+      ? "square radical-square activated"
+      : "square radical-square deactivated";
+
+  listClassName = isHighlighted
+    ? `${listClassName} highlighted`
+    : listClassName;
+
+  return (
     <li
-      className="square radical-square activated selected"
-      onClick={() => props.onRadicalSelect(radical["Radical ID#"])}
-    >
-      {radical.Radical}
-    </li>
-  ) : selectedRadical == "" ? (
-    <li
-      className="square radical-square activated"
-      onClick={() => props.onRadicalSelect(radical["Radical ID#"])}
-    >
-      {radical.Radical}
-    </li>
-  ) : (
-    <li
-      className="square radical-square deactivated"
-      onClick={() => props.onRadicalSelect(radical["Radical ID#"])}
+      className={listClassName}
+      onClick={() => onRadicalSelect(radical.Radical)}
     >
       {radical.Radical}
     </li>
@@ -54,23 +66,33 @@ class RadicalTable extends Component {
   static propTypes = {
     resultRadical: PropTypes.array.isRequired,
     onRadicalSelect: PropTypes.func.isRequired,
-    selectedRadicalId: PropTypes.string.isRequired,
+    onRadicalHighlight: PropTypes.func.isRequired,
+    selectedRadicalChar: PropTypes.string.isRequired,
+    highlightedRadicalStrokeGrp: PropTypes.number.isRequired,
   };
 
-  handleRadicalSelect(radicalId) {
-    this.props.onRadicalSelect(radicalId);
+  handleRadicalSelect(radicalChar) {
+    this.props.onRadicalSelect(radicalChar);
+  }
+
+  handleRadicalHighlight(strokeNum) {
+    this.props.onRadicalHighlight(strokeNum);
   }
 
   render() {
-    const selectedRadicalId = this.props.selectedRadicalId;
+    const selectedRadicalChar = this.props.selectedRadicalChar;
+    const highlightedRadicalStrokeGrp = this.props.highlightedRadicalStrokeGrp;
     const radicalList = this.props.resultRadical;
     const radicalCompList = radicalList
       .map((radical) => (
         <RadicalSquare
           key={radical["Radical ID#"]}
           radical={radical}
-          selectedRadical={selectedRadicalId}
-          isSelected={selectedRadicalId == radical["Radical ID#"]}
+          selectedRadicalChar={selectedRadicalChar}
+          isSelected={selectedRadicalChar == radical.Radical}
+          isHighlighted={
+            parseInt(radical["Stroke#"]) === highlightedRadicalStrokeGrp
+          }
           onRadicalSelect={this.handleRadicalSelect.bind(this)}
         />
       ))
@@ -82,6 +104,7 @@ class RadicalTable extends Component {
           <StrokeNumberSquare
             key={i + radicalList.length}
             strokeNum={parseInt(radicalList[i]["Stroke#"])}
+            onRadicalHighlight={this.handleRadicalHighlight.bind(this)}
           />
         );
       } else if (
@@ -95,6 +118,7 @@ class RadicalTable extends Component {
           <StrokeNumberSquare
             key={i + radicalList.length}
             strokeNum={parseInt(radicalList[i]["Stroke#"])}
+            onRadicalHighlight={this.handleRadicalHighlight.bind(this)}
           />
         );
       }
