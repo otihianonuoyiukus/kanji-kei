@@ -4,6 +4,7 @@ import SearchFilter from "./SearchFilter";
 import AutoCompleteList from "./AutoCompleteList";
 import RadicalTable from "./RadicalTable";
 
+//TODO: Might want to make this "better"
 let resultKanji;
 const csvURLKanji =
   "https://raw.githubusercontent.com/kanjialive/kanji-data-media/master/language-data/ka_data.csv";
@@ -167,9 +168,13 @@ class SearchBar extends Component {
             onRadicalHighlight={this.handleRadicalHighlight.bind(this)}
           />
         )}
-        {this.state.searchValue.length > 0 && (
-          <AutoCompleteList kanjiList={this.state.kanjiList} />
-        )}
+        {this.state.searchValue.length > 0 &&
+          this.state.kanjiList.length > 0 && (
+            <AutoCompleteList
+              filterValue={this.state.filterValue}
+              kanjiList={this.state.kanjiList}
+            />
+          )}
       </div>
     );
   }

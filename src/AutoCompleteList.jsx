@@ -8,20 +8,17 @@ class AutoCompleteList extends Component {
   }
 
   static propTypes = {
+    filterValue: PropTypes.string.isRequired,
     kanjiList: PropTypes.array.isRequired,
   };
 
   render() {
     const kanjiList = this.props.kanjiList.map((kanji) => (
-      <AutoCompleteListItem
-        key={kanji.kanji}
-        kanjiValue={kanji.kanji}
-        meaningValue={kanji.kmeaning}
-        kunyomiValue={kanji.kunyomi_ja}
-        onyomiValue={kanji.onyomi_ja}
-      />
+      <AutoCompleteListItem key={kanji.kanji} kanji={kanji} />
     ));
-    kanjiList.splice(10, kanjiList.length);
+    this.props.filterValue === "radical"
+      ? null
+      : kanjiList.splice(10, kanjiList.length);
 
     return <div className="autocomplete-list">{kanjiList}</div>;
   }

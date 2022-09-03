@@ -1,6 +1,14 @@
 @font-face {
-  font-family: 'JapaneseRadicals-Regular'; /*a name to be used later*/
-  src: url('./assets/fonts/JapaneseRadicals-Regular.otf'); /*URL to font*/
+  font-family: 'JapaneseRadicals-Regular';
+  src: url('./assets/fonts/JapaneseRadicals/JapaneseRadicals-Regular.otf');
+}
+@font-face {
+  font-family: 'KleeOne-Regular';
+  src: url('./assets/fonts/Klee_One/KleeOne-Regular.ttf');
+}
+@font-face {
+  font-family: 'MPLUS1p-Regular';
+  src: url('./assets/fonts/M_PLUS_1p/MPLUS1p-Regular.ttf');
 }
 
 
@@ -9,6 +17,9 @@
  * Globals
  */
 
+.icon {
+  filter: drop-shadow( 0.8px 0.8px 0px #3f3405);
+}
 
 /* Custom default button */
 .btn-secondary,
@@ -191,21 +202,6 @@ main p {
   border-top-right-radius: 0 !important;
   border-top-left-radius: 0 !important;
 }
-.autocomplete-item {
-  width: 100%;
-  padding: 10px;
-  float: left;
-  cursor: pointer;
-  color: #FCD116 !important;
-  user-select: none;
-}
-.autocomplete-item:hover {
-  background-color: #fcd21683;
-}
-.autocomplete-item:active {
-  color: #BC002D !important;
-  background-color: #fcd216bd !important;
-}
 
 /* total width */
 .autocomplete-list::-webkit-scrollbar {
@@ -229,22 +225,62 @@ main p {
 .autocomplete-list::-webkit-scrollbar-button {
   display: none;
 }
+
 .autocomplete-list div span {
-  float: left;
+  height: auto;
   margin: 0;
+  /* float: left; */
 }
-.autocomplete-item-kanji {
+.autocomplete-item {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  float: left;
+  cursor: pointer;
+  color: #FCD116 !important;
+  user-select: none;
+}
+.autocomplete-item:hover {
+  background-color: #fcd2166e;
+}
+.autocomplete-item:active {
+  color: #BC002D !important;
+  background-color: #fcd216bd !important;
+}
+.autocomplete-item-component.kanji {
   height: 100px;
   width: 13%;
   line-height: 90px;
+  font-family: 'MPLUS1p-Regular';
   font-size: 90px;
+  float: left;
 }
-.autocomplete-item-reading {
-  height: 50px;
-  width: 87%;
+.autocomplete-item-component.kanji:hover {
+  font-family: "KleeOne-Regular";
+  line-height: 75px;
+}
+.autocomplete-item-component.desc {
+  width: 82%;
   text-align: left;
-  line-height: 50px;
-  font-size: 100%;
+  line-height: 30px;
+  font-size: 16px;
+  float: left;
+}
+.autocomplete-item-component.desc.meaning {
+  font-size: 20px;
+  font-weight: 400;
+}
+.autocomplete-item-component.desc.reading {
+  font-style: italic;
+  font-weight: 200;
+}
+.autocomplete-item-component.icon {
+  width: 5%;
+  height: 5%;
+  float: right;
+  /* position: absolute; */
+  /* right: 10px; */
+  /* top: 10px; */
 }
 .autocomplete-active {
   /*when navigating through the items using the arrow keys:*/
