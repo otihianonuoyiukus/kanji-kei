@@ -1,0 +1,435 @@
+@font-face {
+  font-family: 'JapaneseRadicals-Regular';
+  src: url('./assets/fonts/JapaneseRadicals/JapaneseRadicals-Regular.otf');
+}
+@font-face {
+  font-family: 'KleeOne-Regular';
+  src: url('./assets/fonts/Klee_One/KleeOne-Regular.ttf');
+}
+@font-face {
+  font-family: 'MPLUS1p-Regular';
+  src: url('./assets/fonts/M_PLUS_1p/MPLUS1p-Regular.ttf');
+}
+
+
+
+/*  
+ * Globals
+ */
+
+.icon {
+  filter: drop-shadow( 0.8px 0.8px 0px #3f3405);
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+textarea:focus,
+button:focus,
+.dropdown:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="submit"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {   
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0) inset, 0 0 0px !important;
+  outline: 0 none !important;
+}
+
+
+
+/*
+ * Base structure
+ */
+
+html {
+  margin: 0;
+  height: 100%;
+  /* box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5); */
+  /* min-height: 100%; */
+}
+
+body {
+  margin: 0;
+  /* min-height: 100% !important; */
+  height: 100%;
+  background-color: #BC002D;
+  /* box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5); */
+}
+
+.testing {
+  /* min-height: 100%; */
+  height: auto;
+  /* height: 1000px; */
+  /* background-color: blue; */
+  /* height: auto !important; */
+  /* margin: 0 auto -20px; */
+}
+
+body, p, h1 {
+  color: #FCD116;
+  text-shadow: 0.05rem .05rem 0 #3F3405;
+}
+
+main {
+  min-height: 100% !important;
+  height: 100%;
+  height: auto !important;
+}
+
+.input-group button {
+  --bs-bg-opacity: 1;
+  --bs-border-opacity: 1;
+  color: #FCD116!important;
+  background-color: #BC002D!important;
+  border-color: #FCD116!important;
+  text-shadow: 0.05rem .05rem 0 #3F3405;
+}
+
+.cover-container {
+  max-width: 60em;
+}
+
+.content {
+  margin-top: 5%;
+}
+
+
+/*
+ * Header
+ */
+
+#nav-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 5px;
+}
+
+.nav-masthead .nav-link {
+  color: #d4b013;
+  border-bottom: .25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+  border-bottom-color: #fcd21683;
+}
+
+.nav-masthead .nav-link + .nav-link {
+  margin-left: 1rem;
+}
+
+.nav-masthead .active {
+  color: #FCD116;
+  border-bottom-color: #FCD116;
+}
+
+
+.input-group {
+  border: 1px solid #FCD116;
+  border-radius: 0.375rem;
+}
+
+.input-group input {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'JapaneseRadicals-Regular', sans-serif
+}
+
+.input-group ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #FCD116;
+  opacity: 1; /* Firefox */
+}
+
+.input-group :-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #FCD116;
+}
+
+.input-group ::-ms-input-placeholder { /* Microsoft Edge */
+  color: #FCD116;
+}
+
+.input-group .form-control {
+  background-color: transparent;
+  border: 0;
+  color: #FCD116;
+}
+
+
+/*
+* Main content
+*/
+
+main h1 {
+  text-align: center;
+}
+
+main p {
+  text-align: center;
+}
+
+#root {
+  margin-top: 50px;
+}
+
+
+
+.autocomplete-list {
+  /*the container must be positioned relative:*/
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-height: 50vh;
+  margin-top: 2px;
+  overflow-y: auto;
+  background-color: #bc002cbd;
+  border: 1px solid #FCD116;
+  border-radius: .5rem !important;
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+}
+
+/* total width */
+.autocomplete-list::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+/* background of the scrollbar */
+.autocomplete-list::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* scrollbar body */
+.autocomplete-list::-webkit-scrollbar-thumb {
+  background-color: #bc002cbd;
+  border-radius: .3rem;
+  border: 1px solid #FCD116;
+}
+
+/* set button */
+.autocomplete-list::-webkit-scrollbar-button {
+  display: none;
+}
+
+.autocomplete-list div span {
+  height: auto;
+  margin: 0;
+  /* float: left; */
+}
+.autocomplete-item {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  float: left;
+  cursor: pointer;
+  color: #FCD116 !important;
+  user-select: none;
+}
+.autocomplete-item:hover {
+  background-color: #fcd2166e;
+}
+.autocomplete-item:active {
+  color: #BC002D !important;
+  background-color: #fcd216bd !important;
+}
+.autocomplete-item-component.kanji {
+  height: 100px;
+  width: 13%;
+  line-height: 90px;
+  font-family: 'MPLUS1p-Regular';
+  font-size: 90px;
+  float: left;
+}
+.autocomplete-item-component.kanji:hover {
+  font-family: "KleeOne-Regular";
+  line-height: 75px;
+}
+.autocomplete-item-component.desc {
+  width: 82%;
+  text-align: left;
+  line-height: 30px;
+  font-size: 16px;
+  float: left;
+}
+.autocomplete-item-component.desc.meaning {
+  font-size: 20px;
+  font-weight: 400;
+}
+.autocomplete-item-component.desc.reading {
+  font-style: italic;
+  font-weight: 200;
+}
+.autocomplete-item-component.icon {
+  width: 5%;
+  height: 5%;
+  float: right;
+  /* position: absolute; */
+  /* right: 10px; */
+  /* top: 10px; */
+}
+.autocomplete-active {
+  /*when navigating through the items using the arrow keys:*/
+  background-color: #fcd21683 !important;
+}
+
+
+
+.dropdown .dropdown-item:active {
+  color: #BC002D !important;
+  background-color: #fcd216bd !important;
+}
+
+.dropdown .dropdown-item:hover {
+  color: #FCD116;
+  background-color: #fcd21683;
+}
+
+.dropdown button {
+  border: 0;
+}
+
+.dropdown-menu {
+  background-color: #bc002cbd;
+  border-color: #FCD116;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.dropdown-menu .dropdown-item {
+  color: #FCD116;
+  user-select: none;
+}
+
+
+
+.filter-badge-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0 !important;
+  width: 10%;
+  padding: 8px 0;
+  border: 0;
+}
+
+.filter-badge-wrapper .filter-badge {
+  width: 90%;
+  border: 1px solid #FCD116;
+  border-radius: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 0.9rem;
+  font-weight: normal;
+  text-transform: uppercase;
+  line-height: 30px;
+  user-select: none;
+}
+
+
+/* 
+* Radical Table
+*/
+.radical-table {
+  padding: 0;
+  margin: 0;
+  margin-top: 2px;
+  background: -webkit-repeating-linear-gradient(top, #BC002D, #BC002D 32px, #a10026 32px, #af0029 64px);
+  background: repeating-linear-gradient(180deg, #BC002D, #BC002D 32px, #a10026 32px, #af0029 64px);
+  background-repeat: repeat-y;
+  background-color: #BC002D;
+  outline: 1px solid #FCD116;
+  border-radius: .5rem !important;
+  border-top-right-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  list-style: none;
+  text-align: center;
+}
+
+/* TODO: Fix this mess of a CSS */
+
+.radical-table .square {
+  width: 32px;
+  height: 32px;
+  float: left;
+  border: 5px solid transparent;
+  user-select: none;
+  font-size: 22px;
+  line-height: 18px;
+}
+
+.radical-table .stroke-square {
+  width: 24px;
+  height: 24px;
+  margin: 4px;
+  color: #BC002D;
+  background-color: #FCD116;
+  font-family: monospace;
+  font-size: 14px;
+  border: 3px solid #FCD116;
+  border-radius: 4px;
+}
+
+.radical-table .radical-square {
+  font-family: JapaneseRadicals-Regular;
+  cursor: pointer;
+}
+
+.radical-table .radical-square.highlighted {
+  background-color: #fcd21683;
+}
+
+.radical-table .radical-square:hover {
+  background-color: #fcd21683;
+}
+
+.radical-table .radical-square:active {
+  color: #BC002D !important;
+  background-color: #fcd216bd !important;
+}
+
+.radical-table .radical-square.selected {
+  border: 5px solid rgba(0,0,0,0.4);
+  background-color: rgba(255, 255, 0, 0.329);
+  border-radius: 50%;
+}
+
+.radical-table .radical-square.activated {
+  color: #FCD116;
+}
+
+.radical-table .radical-square.deactivated {
+  color: #bb9c14;
+}
+
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+/*
+* Footer
+*/
+/* footer { */
+  /* position: absolute; */
+  /* bottom: 0; */
+  /* width: 100%; */
+  /* height: 2.5rem; */
+/* } */
