@@ -1,34 +1,18 @@
 import "./App.css";
 import React, { Component } from "react";
-import Papa from "papaparse";
 import SearchFilter from "./SearchFilter";
 import AutoCompleteList from "./AutoCompleteList";
 import RadicalTable from "./RadicalTable";
 
-//TODO: Might want to make this "better"
 let resultKanji;
-const csvURLKanji =
-  "https://raw.githubusercontent.com/kanjialive/kanji-data-media/master/language-data/ka_data.csv";
-Papa.parse(csvURLKanji, {
-  download: true,
-  worker: true,
-  header: true,
-  complete: function (data) {
-    resultKanji = data.data;
-  },
-});
+fetch("/api/v1/language-data/kanji_data")
+  .then((data) => data.json())
+  .then((data) => (resultKanji = data.results));
 
 let resultRadical;
-const csvURLRadical =
-  "https://raw.githubusercontent.com/kanjialive/kanji-data-media/master/language-data/japanese-radicals.csv";
-Papa.parse(csvURLRadical, {
-  download: true,
-  worker: true,
-  header: true,
-  complete: function (data) {
-    resultRadical = data.data;
-  },
-});
+fetch("/api/v1/language-data/radical_data")
+  .then((data) => data.json())
+  .then((data) => (resultRadical = data.results));
 
 class SearchBar extends Component {
   constructor(props) {
