@@ -7,6 +7,7 @@ const app = express();
 
 const assetsRouter = require("./assets-router");
 app.use("/src/assets/svg/", express.static("src/assets/svg/"));
+app.use("/public/", express.static("public/"));
 app.use("/src/components", assetsRouter);
 
 app.get("/api/v1/language-data/radical_data", (req, res) => {
