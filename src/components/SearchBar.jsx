@@ -7,12 +7,12 @@ import RadicalTable from "./RadicalTable";
 let resultKanji;
 fetch("/api/v1/language-data/kanji_data")
   .then((data) => data.json())
-  .then((data) => (resultKanji = data.results));
+  .then((data) => (resultKanji = data));
 
 let resultRadical;
 fetch("/api/v1/language-data/radical_data")
   .then((data) => data.json())
-  .then((data) => (resultRadical = data.results));
+  .then((data) => (resultRadical = data));
 
 class SearchBar extends Component {
   constructor(props) {
