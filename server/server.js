@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
-const csv = require("csv-parser");
-const fs = require("fs");
+const { getKanjiList, getRadicalList } = require("../src/characters");
+const { getKanjiInfo } = require("../src/kanji");
 
 const app = express();
 
@@ -10,29 +10,29 @@ app.use("/src/assets/svg/", express.static("src/assets/svg/"));
 app.use("/public/", express.static("public/"));
 app.use("/src/components", assetsRouter);
 
-app.get("/api/v1/language-data/radical_data", (req, res) => {
-	const results = [];
-	fs.createReadStream('public/language-data/japanese-radicals.csv')
-	.pipe(csv())
-	.on('data', (data) => results.push(data))
-	.on('end', () => {
-		res.json({results});
-	});
-});
 
 app.get("/api/v1/language-data/kanji_data", (req, res) => {
-	const results = [];
-	fs.createReadStream('public/language-data/ka_data.csv')
-	.pipe(csv())
-	.on('data', (data) => results.push(data))
-	.on('end', () => {
-		res.json({results});
-	});
+	getKanjiList().then(result => res.json(result));
 });
 
-app.get("/", (_req, res) => {
+app.get("/api/v1/language-data/radical_data", (req, res) => {
+	getRadicalList().then(result => res.json(result));
+});
+
+//TODO: Handle error if kanji does not exist in the list
+app.get("api/v1/kanji/:kanji", (req, res) => {
+	getKanjiInfo(req.params.kanji).then(result => res.json(result));
+});
+
+app.get("/", (req, res) => {
 	res.sendFile(path.join(__dirname, "..", "public", "index.html"));
-})
+});
+
+//TODO: This
+// app.get("/kanji/:kanji", (req, res) => {
+
+// });
+
 
 const { PORT = 5000 } = process.env;
 
