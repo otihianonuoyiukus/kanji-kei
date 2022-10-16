@@ -21,38 +21,12 @@
   </head>
   <body>
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-      <!-- cover-container d-flex w-100 h-100 p-3 mx-auto flex-column -->
-      <header class="mb-auto">
-        <div>
-          <img
-            id="nav-icon"
-            class="float-md-start mb-0"
-            src="http://localhost:3000/src/assets/images/logo.png"
-          />
-          <h1 class="float-md-start mb-0">kanjikei</h1>
-          <nav class="h2 nav nav-masthead justify-content-center float-md-end">
-            <a
-              class="nav-link fw-bold py-1 px-0 active"
-              aria-current="page"
-              href="#"
-              >Home</a
-            >
-            <a class="nav-link fw-bold py-1 px-0" href="#">About</a>
-            <!-- <a class="nav-link fw-bold py-1 px-0" href="#">Contact</a> -->
-          </nav>
-        </div>
-      </header>
-
       <main class="content px-3">
-        <h1>Search for a kanji character</h1>
-        <p class="lead">
-          6子コヱ前断リツフ梅講ゃゆじ立易えわ秀最ずま会著ぴもンぱ存流12貫ム締能者ト都泡ぼちは合旧ひ。8医てへじ散秋ラへ契性ヌユヤレ靴元テレ組九マシユ季認べいぶつ本禁皇フタオ康辞エヨアヌ遣緒わ爆93加フツ概聞ぞ患産ラだ質6催さむぞお事画ルけだリ者調面量券トだレよ。
-        </p>
         <div id="root"></div>
         <canvas id="three-card" class="w-100"></canvas>
       </main>
 
-      <div
+      <!-- <div
         id="capture"
         style="
           padding: 10px;
@@ -62,7 +36,7 @@
         "
       >
         <p style="color: #000; font-size: 40px">ハローワールド</p>
-      </div>
+      </div> -->
 
       <footer class="mt-auto text-white-50">
         <p>
@@ -79,7 +53,10 @@
       window.$RefreshSig$ = () => (type) => type;
       window.__vite_plugin_react_preamble_installed__ = true;
     </script>
-    <script type="module" src="http://localhost:3000/src/components/main.jsx"></script>
+    <script
+      type="module"
+      src="http://localhost:3000/src/components/main.jsx"
+    ></script>
     <!-- Bootstrap JavaScript Libraries -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
