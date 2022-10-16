@@ -1,16 +1,17 @@
 const { getKanjiList } = require("../src/characters");
 
-const kanjiList = async () => { return await getKanjiList() };
+const kanjiList = async () => {
+  return await getKanjiList();
+};
 
-async function getKanjiInfo(kanji) {
-	let test;
-	await kanjiList()
-	.then((list) => 
-		list.find(x => x.kanji === kanji))
-	.then((j) => 
-		{test = j;});
-	// console.log(test);
-	return test;
+async function getKanjiInfo(kanjiChar) {
+  let kanji;
+  await kanjiList()
+    .then((list) => list.find((x) => x.kanji === kanjiChar))
+    .then((match) => {
+      kanji = match;
+    });
+  return kanji;
 }
 
 module.exports = { getKanjiInfo };
